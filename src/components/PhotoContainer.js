@@ -1,19 +1,22 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Photo from './Photo';
 
-function Home(props) {
+function PhotoContainer(props) {
   const photos = props.data.photos;
   const photo = photos.photo;
   const input = props.input;
-    useEffect(() => {
-        props.getData("Home");
-    },[]);
+  const { search } = useParams();
+  useEffect(() => {
+    props.getData(search);
+  },[search])
   
   if (photo.length > 0) {
       return ( 
         <div className="photo-container">
-            <Photo photos={photos} input={input}/>
+              <Photo photos={photos} input={input}/>
         </div>
         )
         } else {
@@ -26,4 +29,4 @@ function Home(props) {
         }
 }
 
-export default Home;
+export default PhotoContainer;

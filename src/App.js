@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
-import { Route, Routes, redirect } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 //config 
 import config from './config'
 
 //App components
 import Home from './components/Home'
-import Photo from './components/Photo'
+import PhotoContainer from './components/PhotoContainer'
 import Search from './components/Search'
 import Nav from './components/Nav'
 import Error from './components/Error'
@@ -19,9 +19,6 @@ function App() {
 
     //Array of data based on 'input' state
     const [data, setData] = useState(null);
-
-    //Error Data for <Error/> 
-    const [error,setError] = useState(null);
 
     //Loading
     const [loading, setLoading] = useState(false);
@@ -38,7 +35,6 @@ function App() {
                     setLoading(false);
                 }
             } catch (err) {
-                setError(err);
                 console.log(err);
             }
         };
@@ -66,7 +62,7 @@ function App() {
                         input={input} 
                         /> : 'Loading.....' }/> 
                     <Route path='/search/:search' 
-                        element={data && !loading ? <Photo 
+                        element={data && !loading ? <PhotoContainer 
                             data={data} 
                             getData={getData} 
                             input={input}
