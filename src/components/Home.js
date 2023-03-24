@@ -13,7 +13,12 @@ function Home(props) {
   if (photo.length > 0) {
       return ( 
         <div className="photo-container">
-            <Photo photos={photos} input={input}/>
+        <h2> {input} Results</h2>
+          <ul>
+            {
+              photo.map((item,index) => <Photo photos={item} index={index}  key ={item.id.toString()}/>)
+            }
+          </ul>
         </div>
         )
         } else {

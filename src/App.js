@@ -20,10 +20,10 @@ function App() {
     //Array of data based on 'input' state
     const [data, setData] = useState(null);
 
-    //Loading
+    //Testing if data loading is true or false
     const [loading, setLoading] = useState(false);
 
-
+    //Fetching data based on api + input
     useEffect(()=> {
         setLoading(true);
         const fetchPhotos = async () => {
@@ -41,12 +41,9 @@ function App() {
         fetchPhotos();
     },[input])
     
+    //Callback function to set input from child components
     function getData(data){
         setInput(data);
-    }
-
-    function clearData(){
-        setData();
     }
 
     return (
@@ -66,7 +63,6 @@ function App() {
                             data={data} 
                             getData={getData} 
                             input={input}
-                            clearData={clearData}
                             />  : 'Searching.... '} />
                 <Route path='/*' element={<Error/>} />
             </Routes>

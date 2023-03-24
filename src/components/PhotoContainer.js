@@ -7,7 +7,6 @@ import Photo from './Photo';
 function PhotoContainer(props) {
   const photos = props.data.photos;
   const photo = photos.photo;
-  const input = props.input;
   const { search } = useParams();
   useEffect(() => {
     props.getData(search);
@@ -16,7 +15,12 @@ function PhotoContainer(props) {
   if (photo.length > 0) {
       return ( 
         <div className="photo-container">
-              <Photo photos={photos} input={input}/>
+          <h2> {props.input} Results</h2>
+          <ul>
+            {
+              photo.map((item) => <Photo photos={item} key ={item.id.toString()}/>)
+            }
+          </ul>
         </div>
         )
         } else {
